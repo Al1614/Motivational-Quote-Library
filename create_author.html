@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>Create Author</title>
+</head>
+
+<body>
+    <div>
+        <div class="flex-container2">
+            <div class="links2">
+                <a href="/authors/home">Home</a>
+                <a href="/Logout">Logout</a>
+            </div>
+            <h1 class="majority-width">Add a unique Quote</h1>
+        </div>
+        <div class="yin-2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Yin_and_Yang_symbol.svg/1200px-Yin_and_Yang_symbol.svg.png" alt="Yin & Yang" ></div>
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="error">{{message}}</p> 
+            {% endfor %}
+            {% endif %}
+
+            {% endwith %}
+        </div>
+        <form action="/authors" method="post" 
+            class="flex-container3">
+            <div class="half-width">
+                <div class="form-group">
+                    <label for="name" class="form-label">Author:</label>
+                    <input type="text" name="name" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="style" class="form-label">Type of Quote:</label>
+                    <select name="style" class="form-control" id="style">
+                        <option>Strength</option>
+                        <option>Perseverance</option>
+                        <option>Inspiration</option>
+                        <option>Understanding</option>
+                        <option>Forgiveness</option>
+                        <option>Patience</option>
+                        <option>Kindness</option>
+                        <option>Love</option>
+                        <option>Positivity</option>
+                        <option>Confidence</option>
+                        <option>Self-Love</option>
+                        <option>Self-Care</option>
+                        <option>Self-Improvement</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quote" class="form-label">Quote:</label>
+                    <textarea type="text" cols="50" rows="25" name="quote" class="form-control" id="quote"></textarea>
+                </div>
+                <div class="form-group1">
+                    <label for="meaning" class="form-label">What does this quote mean to you?</label>
+                    <textarea type="text" cols="50" rows="15" name="meaning" class="form-control" id="meaning"></textarea>
+                </div>
+                
+                <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                <div class="form-group2">
+                    <input type="submit" class="btn-create" value="Create your Author!">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
